@@ -23,16 +23,17 @@ with DAG(
     tags=["example", "kubernetes_pod_operator"],
 ) as dag:
     k = KubernetesPodOperator(
-        in_cluster=False,
-        config_file="/opt/airflow/dags/kube-config",
-        namespace="default",
+        in_cluster=True,
+        # config_file="/opt/airflow/dags/kube-config",
+        namespace="airflow",
         image="busybox",
         arguments=["echo", "hello"],
         name="airflow_k8s_pod_operator",
-        is_delete_operator_pod=True,
-        ports=[port],
-        hostnetwork=False,
+        is_delete_operator_pod=False,
+        # ports=[port],
+        # hostnetwork=False,
         task_id="pod_op",
+        get_logs=True,
     )
 
     t = BashOperator(bash_command='echo "ended"', task_id="final")
