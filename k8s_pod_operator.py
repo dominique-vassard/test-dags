@@ -30,7 +30,7 @@ with DAG(
         arguments=["echo", "hello"],
         name="airflow_k8s_pod_operator",
         is_delete_operator_pod=False,
-        # ports=[port],
+        ports=[port],
         # hostnetwork=False,
         task_id="pod_op",
         get_logs=True,
