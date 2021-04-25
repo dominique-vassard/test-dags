@@ -16,7 +16,7 @@ default_args = {
 port = k8s.V1ContainerPort(name="http", container_port=80)
 
 with DAG(
-    dag_id="example_kubernetes_operator",
+    dag_id="example_kubernetes_operator_dv",
     default_args=default_args,
     schedule_interval=None,
     start_date=days_ago(2),
