@@ -27,7 +27,10 @@ with DAG(
         # config_file="/opt/airflow/dags/kube-config",
         namespace="airflow",
         image="busybox",
-        arguments=["echo", "hello"],
+        cmds=["/bin/sh", "-c"],
+        arguments=[
+            "echo 'hello' && sleep 10 && echo 2 && sleep 10 && echo 3 && sleep 10 && echo 4 && sleep 10 && echo 5 && sleep 10 && echo 6 && sleep 10 && echo 7"
+        ],
         name="airflow_k8s_pod_operator",
         is_delete_operator_pod=False,
         ports=[port],
